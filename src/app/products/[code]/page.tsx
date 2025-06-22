@@ -3,7 +3,7 @@ import { ProductResponse } from "@/data/type";
 
 async function getProduct(code: string): Promise<ProductResponse | null> {
     try {
-        const res = await fetch(`http://localhost:8080/${code}`, {
+        const res = await fetch(`http://localhost:8080/products/${code}`, {
             next: { revalidate: 60 }
         });
 
@@ -40,10 +40,11 @@ function formatViews(views: number): string {
 export default async function ProductDetailPage({
                                                     params
                                                 }: {
-    params: { slug: string }
+    params: { code: string }
 }) {
-    const { slug } = params;
-    const product = await getProduct(slug);
+    const { code } = params;
+    console.log("code:", code);
+    const product = await getProduct(code);
 
     if (!product) {
         return (

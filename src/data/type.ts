@@ -17,7 +17,7 @@ export type TopicResponse = {
 export type TopicProductResponse = {
     id: number
     name: string
-    slug: string
+    code: string
     summary: string
 }
 
