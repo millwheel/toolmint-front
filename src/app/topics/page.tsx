@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import {getTopics} from "@/api/topic";
+import {getTopicSummaries} from "@/api/topic";
 
 
 export default async function TopicsPage() {
-    const topics = await getTopics()
+    const topics = await getTopicSummaries()
 
     return (
         <>

@@ -1,24 +1,8 @@
 import Link from 'next/link'
-import {TopicResponse} from "@/data/type";
 import {SimpleProductCard} from "@/components/ProductCard";
+import {getTopic} from "@/api/topic";
 
-async function getTopic(code: string): Promise<TopicResponse | null> {
-    try {
-        const res = await fetch(`http://localhost:8080/topics/${code}`, {
-            next: { revalidate: 60 }
-        })
 
-        if (!res.ok) {
-            console.error(`Failed to fetch topic: ${res.status} ${res.statusText}`)
-            return null
-        }
-
-        return res.json()
-    } catch (error) {
-        console.error('Error fetching topic:', error)
-        return null
-    }
-}
 
 export default async function TopicDetailPage({params}: {
     params: { code: string }
@@ -26,57 +10,43 @@ export default async function TopicDetailPage({params}: {
     const { code } = await params
     const topic = await getTopic(code)
     
+    // NOTE topic이 존재하지 않을 때
     if (!topic) {
         return (
-            <div className="min-h-screen bg-gray-50">
-                <section className="bg-gradient-to-br from-red-50 to-pink-100 py-16">
-                    <div className="max-w-6xl mx-auto px-4 text-center">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                            Topic Not Found
-                        </h1>
-                        <p className="text-xl text-gray-600 mb-8">
-                            The topic doesn&#39;t exist.
-                        </p>
-                        <Link
-                            href="/topics"
-                            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-                        >
-                            Browse All Topics
-                        </Link>
-                    </div>
-                </section>
-            </div>
+            <section className="bg-teal-50 py-10">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-6">
+                        토픽이 존재하지 않습니다.
+                    </h1>
+                    <Link
+                        href="/topics"
+                        className="font-bold text-blue-600 py-3"
+                    >
+                        다른 토픽 찾기
+                    </Link>
+                </div>
+            </section>
         )
     }
 
+    // NOTE topic이 존재할 때
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+            <section className="bg-teal-50 py-10">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="text-center">
-                        <div className="text-6xl mb-4">{topic.emoji}</div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            {topic.name}
-                        </h1>
-                        <p className="text-xl text-gray-600 mb-8">
-                            Discover {topic.products.length} amazing products in {topic.name}
-                        </p>
+                    <div className="flex items-baseline space-x-4 mb-4">
+                        <div className="text-4xl">{topic.emoji}</div>
+                        <h1 className="text-4xl font-bold text-gray-900">{topic.name}</h1>
                     </div>
+                    <p className="text-xl text-gray-600 mb-8 mx-auto">
+                        {topic.name} 토픽에 해당하는 {topic.products.length} 개의 제품을 찾았습니다.
+                    </p>
                 </div>
             </section>
 
             {/* Products Section */}
             <section className="max-w-6xl mx-auto px-4 py-12">
-                <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900">
-                        Products in {topic.name}
-                    </h2>
-                    <span className="text-sm text-gray-500">
-                        {topic.products.length} products found
-                    </span>
-                </div>
-
                 {topic.products.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {topic.products.map((product) => (
