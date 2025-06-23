@@ -1,36 +1,19 @@
 import Link from 'next/link'
-import {TopicSummaryResponse} from "@/data/type";
+import {getTopics} from "@/api/topic";
 
-async function getTopics(): Promise<TopicSummaryResponse[]> {
-    try {
-        const res = await fetch('http://localhost:8080/topics', {
-            next: { revalidate: 60 }
-        })
-
-        if (!res.ok) {
-            console.error(`Failed to fetch topics: ${res.status} ${res.statusText}`)
-            return []
-        }
-
-        return res.json()
-    } catch (error) {
-        console.error('Error fetching topics:', error)
-        return []
-    }
-}
 
 export default async function TopicsPage() {
     const topics = await getTopics()
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <>
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
-                <div className="max-w-6xl mx-auto px-4 text-center">
+            <section className="bg-teal-50 py-10">
+                <div className="max-w-6xl mx-auto px-4">
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                         Browse Topics
                     </h1>
-                    <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    <p className="text-xl text-gray-600 mb-8 mx-auto">
                         Browse saas across {topics.length} topics
                     </p>
                 </div>
@@ -68,6 +51,6 @@ export default async function TopicsPage() {
                     </div>
                 </section>
             </div>
-        </div>
+        </>
     )
 }
