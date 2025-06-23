@@ -2,8 +2,6 @@ import Link from 'next/link'
 import {SimpleProductCard} from "@/components/ProductCard";
 import {getTopic} from "@/api/topic";
 
-
-
 export default async function TopicDetailPage({params}: {
     params: { code: string }
 }) {
@@ -57,47 +55,35 @@ export default async function TopicDetailPage({params}: {
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-12">
-                        <div className="text-gray-400 mb-4">
-                            <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={1}
-                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-6V8h6v5z"
-                                />
-                            </svg>
-                        </div>
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">
-                            No products yet
-                        </h3>
-                        <p className="text-gray-500 mb-6">
-                            There are no products in this topic at the moment.
-                        </p>
-                        <Link
-                            href="/topics"
-                            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-                        >
-                            Browse Other Topics
-                        </Link>
-                    </div>
+                    <EmptyState />
                 )}
-            </section>
-
-            {/* Back to Topics */}
-            <section className="max-w-6xl mx-auto px-4 pb-12">
-                <div className="text-center">
-                    <Link
-                        href="/topics"
-                        className="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors"
-                    >
-                        <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Back to All Topics
-                    </Link>
-                </div>
             </section>
         </div>
     )
+}
+
+function EmptyState() {
+    return (
+        <div className="text-center py-12">
+            <div className="text-gray-400 mb-4">
+                <svg
+                    className="w-16 h-16 mx-auto"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-6V8h6v5z"
+                    />
+                </svg>
+            </div>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">제품 없음</h3>
+            <p className="text-gray-500 mb-6">
+                현재 토픽 내 제품이 없습니다. 잠시만 기다려주세요.
+            </p>
+        </div>
+    );
 }
