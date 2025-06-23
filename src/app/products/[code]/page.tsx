@@ -91,17 +91,6 @@ export default async function ProductDetailPage({
             {/* Content Section */}
             <section className="max-w-4xl mx-auto px-4 py-12">
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                    {/* Summary */}
-                    <div className="p-8">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6">제품 요약</h2>
-                        <div className="prose prose-gray max-w-none">
-                            <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                                {product.summary}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    {/* Description */}
                     <div className="p-8">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">제품 소개</h2>
                         <div className="prose prose-gray max-w-none">
