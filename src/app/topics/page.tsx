@@ -10,11 +10,11 @@ export default async function TopicsPage() {
             {/* Hero Section */}
             <section className="bg-teal-50 py-10">
                 <div className="max-w-6xl mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        Browse Topics
+                    <h1 className="text-4xl font-bold text-gray-900 mb-6">
+                        카테고리별로 도구 찾기
                     </h1>
                     <p className="text-xl text-gray-600 mb-8 mx-auto">
-                        Browse saas across {topics.length} topics
+                        {topics.length} 개의 카테고리에서 도구를 찾아보세요
                     </p>
                 </div>
             </section>
