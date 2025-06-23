@@ -1,8 +1,22 @@
-import {ProductResponse} from "@/data/type";
+import {ProductResponse, ProductSummaryResponse} from "@/data/type";
 
-export async function getProducts() :
+export async function getProducts() : Promise<ProductSummaryResponse | null> {
+    try {
+        const res = await fetch(`http://localhost:8080/products`, {
+            next: {revalidate: 60}
+        })
 
+        if (!res.ok) {
+            console.error(`Failed to fetch products: ${res.status} ${res.statusText}`);
+            return null;
+        }
 
+        return res.json();
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        return null;
+    }
+}
 
 export async function getProduct(code: string): Promise<ProductResponse | null> {
     try {
