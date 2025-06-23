@@ -1,5 +1,9 @@
 import {ProductResponse} from "@/data/type";
 
+export async function getProducts() :
+
+
+
 export async function getProduct(code: string): Promise<ProductResponse | null> {
     try {
         const res = await fetch(`http://localhost:8080/products/${code}`, {

@@ -21,6 +21,20 @@ export type TopicProductResponse = {
     summary: string
 }
 
+export type ProductSummaryResponse = {
+    id: number
+    code: string
+    name: string
+    summary: string
+    topics: ProductTopicResponse[]
+}
+
+export type ProductTopicResponse = {
+    id: number
+    code: string
+    name: string
+}
+
 export type ProductResponse = {
     id: number
     code: string
