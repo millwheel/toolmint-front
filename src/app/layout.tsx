@@ -84,7 +84,7 @@ export default function RootLayout({
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                         {/* Company Info */}
                         <div className="col-span-1 md:col-span-2">
-                            <h4 className="text-lg font-bold text-gray-900 mb-4">IntroduceSaaS</h4>
+                            <h4 className="text-lg font-bold text-gray-900 mb-4">Toolmint</h4>
                             <p className="text-gray-600 mb-4">
                                 최고의 SaaS 제품들을 발견하고 탐색하여 생산성과 워크플로를 향상시키세요.
                             </p>
@@ -116,29 +116,9 @@ export default function RootLayout({
                         <div>
                             <h5 className="font-medium text-gray-900 mb-4">제품</h5>
                             <ul className="space-y-2 text-sm text-gray-600">
+                                <li><a href="#" className="hover:text-gray-900 transition-colors">토픽 둘러보기</a></li>
                                 <li><a href="#" className="hover:text-gray-900 transition-colors">제품 둘러보기</a></li>
                                 <li><a href="#" className="hover:text-gray-900 transition-colors">제품 등록</a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">카테고리</a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">인기 제품</a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">신규 제품</a></li>
-                            </ul>
-                        </div>
-
-                        {/* Company Links */}
-                        <div>
-                            <h5 className="font-medium text-gray-900 mb-4">회사</h5>
-                            <ul className="space-y-2 text-sm text-gray-600">
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">소개</a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">문의</a></li>
-                                <li><a href="https://github.com/millwheel" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors flex items-center">
-                                    GitHub
-                                    <svg className="w-3 h-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
-                                </a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">개인정보처리방침</a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">이용약관</a></li>
-                                <li><a href="#" className="hover:text-gray-900 transition-colors">뉴스레터</a></li>
                             </ul>
                         </div>
                     </div>
@@ -146,12 +126,7 @@ export default function RootLayout({
                     <div className="border-t border-gray-200 mt-8 pt-8">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between text-sm text-gray-500">
                             <div className="mb-4 md:mb-0">
-                                © 2025 IntroduceSaaS. All rights reserved.
-                            </div>
-                            <div className="flex space-x-6">
-                                <a href="#" className="hover:text-gray-700 transition-colors">FAQ</a>
-                                <a href="#" className="hover:text-gray-700 transition-colors">고객지원</a>
-                                <a href="#" className="hover:text-gray-700 transition-colors">API</a>
+                                © 2025 Toolmint. All rights reserved.
                             </div>
                         </div>
                     </div>
