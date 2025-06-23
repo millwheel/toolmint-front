@@ -19,15 +19,6 @@ async function getProduct(code: string): Promise<ProductResponse | null> {
     }
 }
 
-function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ko-KR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-}
-
 function formatViews(views: number): string {
     if (views >= 1000000) {
         return (views / 1000000).toFixed(1) + 'M';
@@ -42,7 +33,7 @@ export default async function ProductDetailPage({
                                                 }: {
     params: { code: string }
 }) {
-    const { code } = params;
+    const { code } = await params;
     console.log("code:", code);
     const product = await getProduct(code);
 
@@ -118,18 +109,10 @@ export default async function ProductDetailPage({
                         </div>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-lg mx-auto">
+                        <div className="max-w-lg mx-auto">
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-gray-900">{formatViews(product.totalViews)}</div>
+                                <div className="text-xl text-gray-900">{formatViews(product.totalViews)}</div>
                                 <div className="text-sm text-gray-600">총 조회수</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-2xl font-bold text-gray-900">{formatDate(product.createdAt)}</div>
-                                <div className="text-sm text-gray-600">등록일</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-2xl font-bold text-gray-900">{formatDate(product.updatedAt)}</div>
-                                <div className="text-sm text-gray-600">수정일</div>
                             </div>
                         </div>
                     </div>
@@ -139,6 +122,16 @@ export default async function ProductDetailPage({
             {/* Content Section */}
             <section className="max-w-4xl mx-auto px-4 py-12">
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    {/* Summary */}
+                    <div className="p-8">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-6">제품 요약</h2>
+                        <div className="prose prose-gray max-w-none">
+                            <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                                {product.summary}
+                            </div>
+                        </div>
+                    </div>
+                    
                     {/* Description */}
                     <div className="p-8">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">제품 소개</h2>
@@ -147,44 +140,6 @@ export default async function ProductDetailPage({
                                 {product.description}
                             </div>
                         </div>
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="border-t border-gray-200 p-8 bg-gray-50">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">제품 정보</h3>
-                        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <dt className="text-sm font-medium text-gray-500">제품 코드</dt>
-                                <dd className="mt-1 text-sm text-gray-900 font-mono bg-white px-2 py-1 rounded">
-                                    {product.code}
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="text-sm font-medium text-gray-500">웹사이트</dt>
-                                <dd className="mt-1">
-                                    <a
-                                        href={product.websiteUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-sm text-blue-600 hover:text-blue-700 hover:underline break-all"
-                                    >
-                                        {product.websiteUrl}
-                                    </a>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="text-sm font-medium text-gray-500">등록일시</dt>
-                                <dd className="mt-1 text-sm text-gray-900">
-                                    {new Date(product.createdAt).toLocaleString('ko-KR')}
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="text-sm font-medium text-gray-500">수정일시</dt>
-                                <dd className="mt-1 text-sm text-gray-900">
-                                    {new Date(product.updatedAt).toLocaleString('ko-KR')}
-                                </dd>
-                            </div>
-                        </dl>
                     </div>
                 </div>
             </section>

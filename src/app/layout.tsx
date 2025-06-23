@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "IntroduceSaaS",
+    title: "toolmint",
     description: "최고의 SaaS 제품을 만나보세요",
 };
 
