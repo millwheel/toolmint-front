@@ -21,40 +21,27 @@ export default async function ProductDetailPage({
 
     if (!product) {
         return (
-            <div className="min-h-screen bg-gray-50">
-                <section className="bg-gradient-to-br from-red-50 to-pink-100 py-16">
-                    <div className="max-w-6xl mx-auto px-4 text-center">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                            제품을 찾을 수 없습니다
-                        </h1>
-                        <p className="text-xl text-gray-600 mb-8">
-                            요청하신 제품이 존재하지 않거나 삭제되었습니다.
-                        </p>
-                        <Link
-                            href="/public"
-                            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-                        >
-                            홈으로 돌아가기
-                        </Link>
-                    </div>
-                </section>
-            </div>
+            <section className="bg-teal-50 py-10">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-6">
+                        제품을 찾을 수 없습니다
+                    </h1>
+                    <Link
+                        href="/"
+                        className="font-bold text-blue-600 py-3"
+                    >
+                        홈으로 돌아가기
+                    </Link>
+                </div>
+            </section>
         );
     }
 
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
-                <div className="max-w-4xl mx-auto px-4">
-                    {/* Breadcrumb */}
-                    <nav className="text-sm text-gray-600 mb-6">
-                        <Link href="/public" className="hover:text-blue-600">
-                            홈
-                        </Link>
-                        <span className="mx-2">→</span>
-                        <span className="text-gray-900">{product.name}</span>
-                    </nav>
+            <section className="bg-teal-50 py-10">
+                <div className="max-w-6xl mx-auto px-4">
 
                     <div className="text-center">
                         {/* Product Icon */}
@@ -88,15 +75,15 @@ export default async function ProductDetailPage({
                                 </svg>
                                 좋아요
                             </button>
+
                         </div>
 
-                        {/* Stats */}
-                        <div className="max-w-lg mx-auto">
-                            <div className="text-center">
-                                <div className="text-xl text-gray-900">{formatViews(product.totalViews)}</div>
-                                <div className="text-sm text-gray-600">총 조회수</div>
-                            </div>
+                        {/* stats */}
+                        <div className="text-center items-baseline flex justify-center space-x-1">
+                            <div className="text-xl text-gray-900">{formatViews(product.totalViews)}</div>
+                            <div className="text-sm text-gray-600">조회수</div>
                         </div>
+
                     </div>
                 </div>
             </section>
