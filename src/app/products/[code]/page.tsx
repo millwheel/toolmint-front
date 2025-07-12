@@ -78,12 +78,6 @@ export default async function ProductDetailPage({
 
                         </div>
 
-                        {/* stats */}
-                        <div className="text-center items-baseline flex justify-center space-x-1">
-                            <div className="text-xl text-gray-900">{formatViews(product.totalViews)}</div>
-                            <div className="text-sm text-gray-600">조회수</div>
-                        </div>
-
                     </div>
                 </div>
             </section>
